@@ -89,7 +89,7 @@ Améliore la gestion des les mouvement du pad en faisant en sorte qu'il reste da
 
 
 ## Créer la balle rebondissante
-<!-- ws: {type: exercise, id: balle-mouvement} -->
+<!-- ws: {type: exercise, id: balle-mouvement, validation: quiz} -->
 
 <!-- ws:toolbox -->
 > 🧰 **Outil #7 : La fonction `circ()`**
@@ -119,9 +119,25 @@ Pour faire bouger la balle, tu vas modifier les coordonnées du centre :  `ballx
 
 Pour obtenir une trajectoire en diagonale (comme sur un billard), il faut modifier à chaque fois `ballx` et `bally` 
 
-Tout d’abord essayez de faire bouger la balle en diagonale vers le haut et vers la droite en utilisant deux nouvelles variables `ballspeedx` et `ballspeedy`
+Tout d’abord essaye de faire bouger la balle en diagonale vers le haut et vers la droite en utilisant deux nouvelles variables `ballspeedx` et `ballspeedy`
 
 ![La balle part en diagonale, vers le haut et vers la droite. Rien ne l'arrête encore : elle sort de la zone de jeu.](img/balle-mouvement.gif)
+
+<!-- ws: {type: quiz, id: balle-direction, title: "La direction de la balle", kind: single, points: 10} -->
+> Pour que la balle parte en diagonale vers le haut et vers la droite, quelles valeurs faut-il donner à `ballspeedx` et `ballspeedy` ?
+
+- A. `ballspeedx = 1` et `ballspeedy = 1`
+- B. `ballspeedx = 1` et `ballspeedy = -1`
+- C. `ballspeedx = -1` et `ballspeedy = 1`
+- D. `ballspeedx = -1` et `ballspeedy = -1`
+
+<!-- ws: {type: quiz, id: balle-vitesse, title: "La vitesse de la balle", kind: single, points: 10} -->
+> La fonction `TIC()` est lancée 60 fois par seconde. Si `ballspeedx` vaut `2`, de combien de pixels la balle se déplace-t-elle vers la droite en une seconde ?
+
+- A. 2
+- B. 60
+- C. 120
+- D. 240
 
 ## Faire rebondir la balle
 <!-- ws: {type: exercise, id: balle-rebond} -->
@@ -138,7 +154,13 @@ Une fois arrivé au niveau de la bordure de la zone de jeu, sur notre schéma à
 
 Il faut penser à prendre en compte le rayon de la balle.
 
-Tu as 3 cas à gérer, la bordure du haut, la bordure de droite et la bordure de gauche.
+### Les 3 cas à gérer
+<!-- ws:doit -->
+
+Tu as 3 cas à gérer, Tu dois faire en sorte de faire rebondir la balle quand elle touche:
+- La bordure du haut
+- La bordure de droite
+- La bordure de gauche
 
 ![La balle rebondit sur la bordure du haut, puis sur la bordure de droite. En bas, rien ne l'arrête pour l'instant.](img/balle-rebond.gif)
 
