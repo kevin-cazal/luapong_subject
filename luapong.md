@@ -1,10 +1,124 @@
-
 # Créer ton mini-jeu
-<!-- ws: {type: chapter, topology: linear} -->
 
 Tu es prêt à créer ton premier mini-jeu.
 
-## Faire bouger le pad
+## Prise en main de TIC-80
+<!-- ws: {type: chapter, topology: linear} -->
+
+### Prendre en main l'environnement
+<!-- ws: {type: exercise, id: prise-en-main, validation: quiz} -->
+
+#### Lance l'environnement
+<!-- ws:doit -->
+
+**Ton objectif :**
+- Ouvre l'environnement TIC-80 en cliquant sur le bouton **Ouvrir TIC-80** qui se trouve en bas à droite de ton écran.
+  <!-- ws:cue runtime -->
+- Clique ensuite dans le panneau **TIC-80** sur « Click to play » pour démarrer ton environnement.
+
+![La console de TIC-80, une fois l'environnement démarré.](img/console-demarrage.png)
+
+#### Initialiser TIC-80 pour pouvoir utiliser le langage Lua
+
+Il te suffit de taper la commande suivante dans le panneau **TIC-80** :
+
+```bash
+new lua
+```
+
+<!-- ws:toolbox -->
+> 🧰 **Outil #1 : `new lua` « Initialiser un projet en Lua dans TIC-80 »**
+> Taper `new lua` dans la console permet d'indiquer que tu souhaites faire ton projet en Lua. TIC-80 est capable d'utiliser d'autres langages de programmation, comme Python ou JavaScript.
+<!-- /ws:toolbox -->
+
+#### Reset “hello world”
+
+Le plus simple pour bien comprendre le fonctionnement de TIC-80 consiste à partir d’un environnement vierge : tu vas donc supprimer tous les éléments de la démo.
+
+##### Mise en application
+<!-- ws:doit -->
+
+- Après avoir initialisé ton projet en Lua, rends-toi dans le panneau **Editor** et supprime tout le code **après** `-- script:  lua`.
+
+![Le panneau Editor après la suppression : il ne reste que la ligne du script Lua.](img/editeur-apres-reset.png)
+
+<!-- ws: {type: quiz, id: init-cmd, title: "Créer un projet Lua", kind: single, points: 10} -->
+> Quelle commande initialise un projet Lua dans TIC-80 ?
+
+- A. init lua
+- B. new lua
+- C. start lua
+
+### Affichage du pad et de l’écran de jeu
+<!-- ws: {type: exercise, id: affichage-pad, validation: quiz} -->
+
+Ici tu vas taper tes premières lignes de code dans TIC-80.
+
+
+<!-- ws:toolbox -->
+> 🧰 **Outil #2 : `cls()` « efface l'écran »**
+> Moyen mnémotechnique : **CL**ear **S**creen
+
+> 🧰 **Outil #3 : `rect()` « dessine un rectangle sur l'écran »**
+> Les valeurs entre les parenthèses permettent de préciser la position, les dimensions et la couleur du rectangle
+<!-- /ws:toolbox -->
+
+
+#### Mise en application
+<!-- ws:doit -->
+
+Écris le code initial dans l'éditeur :
+```lua
+function TIC()
+ cls()
+ rect(0,0,120,120,10)
+ rect(45, 110, 30, 3, 12)
+end
+```
+
+<details>
+    <summary>Explications</summary>
+
+- La partie principale du programme se déclare de la façon suivante `function TIC()` et se termine par `end`
+
+- En Lua, l'espace au début de chaque ligne n'est pas obligatoire, mais il rend le code plus facile à lire : garde-le, comme dans le code ci-dessus.
+
+- Les instructions entre `function TIC()` et `end` s'exécutent dans l'ordre : effacer l'écran, dessiner un rectangle, dessiner un autre rectangle
+
+</details>
+
+Pour lancer ton code :
+- Clique dans le panneau TIC-80
+- Tape la commande `run` **ou** utilise `Ctrl`+`Entrée`
+
+![Le résultat attendu : un grand carré bleu, la zone de jeu, et le pad blanc en bas.](img/ecran-pad-et-zone-de-jeu.png)
+
+<!-- ws: {type: quiz, id: cls-role, title: "Le rôle de cls()", kind: single, points: 10} -->
+> À quoi sert la fonction `cls()` dans notre programme TIC-80 ?
+
+- A. À calculer le score du joueur
+- B. À dessiner un rectangle
+- C. À effacer l'écran
+- D. À lancer le programme
+
+<!-- ws: {type: quiz, id: tic-rect, title: "La fonction rect()", kind: single, points: 10} -->
+> Que fait la fonction `rect()` ?
+- A. Dessine un cercle
+- B. Dessine un triangle
+- C. Dessine un rectangle
+- D. Cette fonction ne fait rien
+
+<!-- ws: {type: quiz, id: rect-order, title: "L'ordre des rectangles", kind: single, points: 10} -->
+> Que se passerait-il si les lignes `rect(0, 0, 120, 120, 10)` et `rect(45, 110, 30, 3, 12)` étaient inversées ?
+- A. Les rectangles sont dessinés dans un ordre différent : le rectangle bleu est dessiné après le rectangle blanc, qui n'est plus visible
+- B. Le programme se comporte exactement comme avant, rien n'a changé
+- C. Le programme plante et une erreur s'affiche
+- D. Des cercles s'affichent à l'écran à la place des rectangles
+
+## Construire le jeu
+<!-- ws: {type: chapter, topology: linear} -->
+
+### Faire bouger le pad
 <!-- ws: {type: exercise, id: pad-mouvement} -->
 
 Pour faire bouger le pad avec le clavier, il faut :
@@ -46,7 +160,7 @@ end
 Teste en cliquant dans le panneau TIC-80, le raccourci **`Ctrl`+`Entrée`** relance le jeu avec ton code modifié :
 - La touche **`←`** doit déplacer le pad vers la gauche.
 
-### Fais bouger le pad dans l’autre direction
+#### Fais bouger le pad dans l’autre direction
 <!-- ws:doit -->
 
 Après avoir testé le code précédent, inspire-toi de celui-ci pour faire en sorte que le pad puisse bouger à droite comme à gauche.
@@ -70,7 +184,7 @@ La fonction **`btn`** prend en paramètre un nombre (3 : flèche droite du clavi
 * D. btn("down")
 
 
-### Limite les mouvements du pad
+#### Limite les mouvements du pad
 
 <!-- ws:toolbox -->
 > 🧰 **Outil #6 : Opérateur logique `and`**
@@ -88,7 +202,7 @@ Améliore la gestion des mouvements du pad pour qu'il reste dans le carré de je
 ![La flèche reste appuyée, mais le pad s'arrête contre le bord du carré de jeu, à droite comme à gauche.](img/pad-limites.gif)
 
 
-## Créer la balle rebondissante
+### Créer la balle rebondissante
 <!-- ws: {type: exercise, id: balle-mouvement, validation: quiz} -->
 
 <!-- ws:toolbox -->
@@ -96,14 +210,14 @@ Améliore la gestion des mouvements du pad pour qu'il reste dans le carré de je
 > Consulte l'aide de TIC-80 [https://tic80.com/learn](https://tic80.com/learn) et retrouve tous les paramètres de la fonction `circ`
 <!-- /ws:toolbox -->
 
-### Dessiner la balle
+#### Dessiner la balle
 <!-- ws:doit -->
 
 Utilise la fonction `circ` pour créer la balle au centre de l’écran. Pense à utiliser des variables `ballx` et `bally` pour pouvoir déplacer ta balle dans l’écran de jeu.
 
 ![La balle est dessinée au centre de la zone de jeu.](img/balle-dessin.png)
 
-### Faire bouger la balle
+#### Faire bouger la balle
 
 
 <!-- ws:toolbox -->
@@ -139,7 +253,7 @@ Tout d’abord, essaye de faire bouger la balle en diagonale vers le haut et ver
 - C. 120
 - D. 240
 
-## Faire rebondir la balle
+### Faire rebondir la balle
 <!-- ws: {type: exercise, id: balle-rebond} -->
 
 Pour faire rebondir la balle, tu dois inverser la direction de la balle en fonction de sa position à l’écran.
@@ -154,7 +268,7 @@ Une fois arrivée à la bordure de la zone de jeu, sur le schéma à la position
 
 Il faut penser à prendre en compte le rayon de la balle.
 
-### Les 3 cas à gérer
+#### Les 3 cas à gérer
 <!-- ws:doit -->
 
 Tu as 3 cas à gérer : la balle doit rebondir quand elle touche
@@ -174,7 +288,7 @@ Tu as 3 cas à gérer : la balle doit rebondir quand elle touche
 - b. 0
 - c. -2
 
-## Checkpoint
+### Checkpoint
 <!-- ws: {type: exercise, id: checkpoint} -->
 
 Vérifie le comportement de ton programme :
@@ -182,10 +296,10 @@ Vérifie le comportement de ton programme :
 - La balle commence au centre de l'écran, elle se déplace toute seule et rebondit lorsqu'elle rencontre un bord de l'écran
 
 
-## Gérer le respawn et la collision avec le pad
+### Gérer le respawn et la collision avec le pad
 <!-- ws: {type: exercise, id: respawn} -->
 
-### Respawn
+#### Respawn
 <!-- ws:doit -->
 
 Lorsque la balle dépasse la limite de la bordure du bas de l’espace de jeu, elle continue à descendre pour ensuite disparaître.
@@ -194,7 +308,7 @@ Tu vas devoir faire en sorte que la balle « respawn » à son point de départ 
 
 ![Quand la balle sort par le bas, elle revient à son point de départ, au centre.](img/balle-respawn.gif)
 
-### Gérer la collision avec le pad
+#### Gérer la collision avec le pad
 
 Lorsque la balle se retrouve en collision avec le pad, tu vas devoir faire en sorte que la balle rebondisse sur le pad. Cette étape est importante : c’est à partir de ce moment-là que ton jeu sera vraiment jouable.
 
@@ -207,10 +321,10 @@ Utilise une triple condition avec les variables `ballx`, `bally`, `padx`, `pady`
 
 </details>
 
-## Ajouter une interface
+### Ajouter une interface
 <!-- ws: {type: exercise, id: interface} -->
 
-### Le score
+#### Le score
 <!-- ws:doit -->
 
 Avec la fonction `print` et l'opérateur `..` (il colle un texte et un nombre bout à bout), tu vas afficher le score à l’écran. La méthode de calcul est simple : plus 10 points à chaque fois que la balle rebondit sur le pad.
@@ -221,13 +335,13 @@ Crée une nouvelle variable `score` que tu vas incrémenter dans la condition qu
 
 ![Le score est affiché à droite de la zone de jeu. Il augmente de 10 à chaque rebond sur le pad.](img/score.gif)
 
-### Vies et game over
+#### Vies et game over
 
 De la même manière que dans l’exercice précédent, crée un système de vies : 3 vies, affichées dans l’interface en dessous du score. Lorsque le nombre de vies est égal à zéro, replace la balle à son point de départ, fais en sorte qu'elle ne bouge plus et affiche « game over » au centre de l’écran.
 
 ![Le pad ne bouge pas : à chaque balle perdue, il reste une vie de moins. À zéro, la balle s'arrête à son point de départ et GAME OVER s'affiche.](img/vies-game-over.gif)
 
-## Pour aller plus loin
+### Pour aller plus loin
 
 Tu peux ajouter de nouvelles fonctionnalités à ton jeu, comme un écran de « high scores » qui s’affiche lors du game over, comme dans les jeux rétro, et une option pour relancer le jeu et tenter de battre ces high scores.
 
@@ -235,7 +349,7 @@ Tu peux aussi créer un nouveau jeu en t'appuyant sur tout ce que tu as appris d
 
 ![Le jeu PONG à deux joueurs](img/pong-deux-joueurs.gif)
 
-## Crédits
+### Crédits
 
 Cet atelier a été écrit et testé à Epitech Montpellier 💙 pour le Coding Club
 
