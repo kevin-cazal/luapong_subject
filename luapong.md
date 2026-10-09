@@ -69,7 +69,7 @@ Ici tu vas taper tes premières lignes de code dans TIC-80.
 ```lua
 function TIC()
  cls()
- rect(0,0,120,120,10)
+ rect(0, 0, 120, 120, 10)
  rect(45, 110, 30, 3, 12)
 end
 ```
@@ -150,7 +150,7 @@ function TIC()
   padx = padx - 2
  end
  cls()
- rect(0,0,120,120,10)
+ rect(0, 0, 120, 120, 10)
  rect(padx, 110, padw, padh, 12)
 end
 ```
